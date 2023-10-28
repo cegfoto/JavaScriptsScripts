@@ -21,9 +21,11 @@
         <label for="total">Total:</label><br>
         <input type="number" id="total" name="total" value="0"></br>
         <label for="bills">Bills:</label><br>
-        <input type="number" id="bills" name="bills" value="1000"></br>
+        <input type="number" id="bills" name="bills" value="0"></br>
         <label for="lname">Separate Money:</label><br>
-        <input type="number" id="separate" name="separate" value="6"></br></br>
+        <input type="number" id="separate" name="separate" value="6"></br>
+        <label for="lname">To keep in month:</label><br>
+        <input type="number" id="month" name="month" value="0"></br></br>
         <button onclick="calculate()">Calculate</button></br></br>
         <b>Divided:</b><label id="divided">0</label></br>
         <b>Divided x 2:</b><label id="divided_2">0</label></br>
@@ -40,7 +42,8 @@
   <script>
     function calculate() {
       let divided = (parseFloat(document.getElementById('total').value) 
-        - parseFloat(document.getElementById('bills').value))
+        - parseFloat(document.getElementById('bills').value)
+        - parseFloat(document.getElementById('month').value))
         / parseFloat(document.getElementById('separate').value);
         document.getElementById('divided').innerHTML = divided;
         document.getElementById('divided_2').innerHTML = divided*2;
