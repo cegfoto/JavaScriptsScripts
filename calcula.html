@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Separate Money</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </style>
+  </head>
+  <body>
+
+  <!-- !PAGE CONTENT! -->
+  <div>
+
+    <!-- Header -->
+    <header>
+     
+    </header>
+
+
+    <div>
+        <label for="total">Total:</label><br>
+        <input type="number" id="total" name="total" value="0"></br>
+        <label for="bills">Bills:</label><br>
+        <input type="number" id="bills" name="bills" value="1000"></br>
+        <label for="lname">Separate Money:</label><br>
+        <input type="number" id="separate" name="separate" value="6"></br></br>
+        <button onclick="calculate()">Calculate</button></br></br>
+        <b>Divided:</b><label id="divided">0</label></br>
+        <b>Divided x 2:</b><label id="divided_2">0</label></br>
+    </div>
+    
+  <!-- End Page Content -->
+  </div>
+
+  <!-- Footer / About Section -->
+  <footer>
+    
+  </footer>
+
+  <script>
+    function calculate() {
+      let divided = (parseFloat(document.getElementById('total').value) 
+        - parseFloat(document.getElementById('bills').value))
+        / parseFloat(document.getElementById('separate').value);
+        document.getElementById('divided').innerHTML = divided;
+        document.getElementById('divided_2').innerHTML = divided*2;
+    }
+  </script>
+  
+  </body>
+</html>
