@@ -23,12 +23,16 @@
         <label for="bills">Bills:</label><br>
         <input type="number" id="bills" name="bills" value="0"></br>
         <label for="lname">Separate Money:</label><br>
-        <input type="number" id="separate" name="separate" value="6"></br>
+        <input type="number" id="separate" name="separate" value="5"></br>
         <label for="lname">To keep in month:</label><br>
         <input type="number" id="month" name="month" value="0"></br></br>
         <button onclick="calculate()">Calculate</button></br></br>
-        <b>Divided:</b><label id="divided">0</label></br>
-        <b>Divided x 2:</b><label id="divided_2">0</label></br>
+        <b>CDI 1:</b><label id="cdi1">0</label></br>
+        <b>CDI 2:</b>:</b><label id="cdi2">0</label></br>
+        <b>Entertainment:</b>:</b><label id="entertainment">0</label></br>
+        <b>FIIS:</b>:</b><label id="fiis">0</label></br>
+        <b>Treasure:</b>:</b><label id="treasure">0</label></br>
+        <b>Fun:</b>:</b><label id="fun">0</label></br>
     </div>
     
   <!-- End Page Content -->
@@ -45,8 +49,12 @@
         - parseFloat(document.getElementById('bills').value)
         - parseFloat(document.getElementById('month').value))
         / parseFloat(document.getElementById('separate').value);
-        document.getElementById('divided').innerHTML = divided;
-        document.getElementById('divided_2').innerHTML = divided*2;
+        document.getElementById('cdi1').innerHTML = divided/2;
+        document.getElementById('cdi2').innerHTML = divided/2;
+        document.getElementById('entertainment').innerHTML = divided;
+        document.getElementById('fiis').innerHTML = divided*2;
+        document.getElementById('treasure').innerHTML = divided;
+        document.getElementById('fun').innerHTML = divided;
     }
   </script>
   
