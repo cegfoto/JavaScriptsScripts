@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Separate Money</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </style>
+  </head>
+  <body>
+
+  <!-- !PAGE CONTENT! -->
+  <div>
+
+    <!-- Header -->
+    <header>
+     
+    </header>
+
+
+    <div>
+      
+    </div>
+    </br></br>
+    <div>
+      
+    </div>
+    
+  <!-- End Page Content -->
+  </div>
+
+  <!-- Footer / About Section -->
+  <footer>
+    
+  </footer>
+
+  <script>
+    removeSentences = [
+        " of ",
+        " the ",
+        " and ",
+        " in ",
+        " with ",
+        " above ",
+        " among ",
+        " on ",
+        " a ",
+        " under ",
+        " selective ",
+        " over ",
+        " against ",
+        " down ",
+        " known ",
+        " as ",
+        " amid ",
+        " amidst ",
+        " focus ",
+        " to ",
+        " at ",
+        " used ",
+        " for "
+    ];
+
+    
+
+
+    const genericKeywords = { 
+        "food": [
+            "taste",
+            "meal"
+        ],
+        "mushroom": [
+            "fungus",
+            "fungi",
+            "organic"
+        ],
+        "texture": [
+            "surface",
+            "material"
+        ],
+        "plant": [
+            "flora",
+            "nature",
+            "natural",
+            "botany",
+            "biology",
+            "seasonal",
+            "organic"
+        ],
+        "plants": [
+            "flora",
+            "nature",
+            "natural",
+            "botany",
+            "biology",
+            "seasonal",
+            "organic",
+            "plant"
+        ],
+        "sky": [
+            "air",
+            "high",
+            "atmosphere",
+            "climate",
+            "heaven",
+            "meteorology",
+            "weather"
+        ],
+        "cloud": [
+            "air",
+            "climate",
+            "clouds",
+            "cloudscape",
+            "meteorology",
+            "weather",
+            "fluffy"
+        ],
+        "clouds": [
+            "air",
+            "climate",
+            "clouds",
+            "cloudscape",
+            "meteorology",
+            "weather",
+            "fluffy",
+            "cloud"
+        ],
+        "meat": [
+            "protein"
+        ],
+        "dairy": [
+            "food",
+            "nutrition",
+            "product",
+            "cuisine",
+            "milk",
+            "gastronomy"
+        ],
+        "game": [
+            "editorial",
+            "entertainment",
+            "gaming",
+            "play",
+            "hobbie"
+        ],
+        "leaf": [
+            "nature",
+            "natural",
+            "season",
+            "plant",
+            "organic"
+        ],
+        "leaves": [
+            "nature",
+            "natural",
+            "season",
+            "plant",
+            "leaf",
+            "foliage",
+            "organic"
+        ],
+        "ingredient": [
+            "food",
+            "cook",
+            "cooking",
+            "meal",
+            "dish",
+            "gourmet",
+            "tasty",
+            "lunch",
+            "dinner",
+            "delicious",
+            "gastronomy",
+            "condiment"
+        ],
+        "wildlife": [
+            "nature",
+            "natural",
+            "animal",
+            "fauna",
+            "wild",
+            "biology",
+            "habitat",
+            "environment",
+            "organic"
+        ],
+        "falling": [
+            "movement",
+            "fall"
+        ],
+        "trees": [
+            "nature",
+            "natural",
+            "plant",
+            "flora",
+            "biology",
+            "seasonal",
+            "wood",
+            "tree"
+        ],
+        "tree": [
+            "nature",
+            "natural",
+            "plant",
+            "flora",
+            "biology",
+            "seasonal",
+            "wood"
+        ],
+        "treetop": [
+            "branch",
+            "natural",
+            "nature",
+            "plant",
+            "flora",
+            "tree",
+            "season",
+            "biology",
+            "seasonal"
+        ],
+        "rice": [
+            "grain",
+            "meal",
+            "food",
+            "gastronomy",
+            "nutrition",
+            "tasty",
+            "ingredient",
+            "organic"
+        ],
+        "flower": [
+            "nature",
+            "natural",
+            "plant",
+            "season",
+            "flora",
+            "biology",
+            "botanical",
+            "floral",
+            "seasonal",
+            "petal",
+            "organic"
+        ],
+        "flowers": [
+            "nature",
+            "natural",
+            "plant",
+            "season",
+            "flora",
+            "biology",
+            "botanical",
+            "floral",
+            "seasonal",
+            "petal",
+            "flower",
+            "organic"
+        ],
+        "fruit": [
+            "agriculture",
+            "nutrition",
+            "natural",
+            "organic",
+            "food",
+            "harvest",
+            "taste"
+        ],
+        "vegetable food": [
+            "agriculture",
+            "nutrition",
+            "natural",
+            "organic",
+            "food",
+            "harvest",
+            "taste",
+            "horticultural"
+        ],
+        "bird": [
+            "animal",
+            "fauna",
+            "biology",
+            "birdwatching"
+        ],
+        "birds": [
+            "animal",
+            "fauna",
+            "biology",
+            "bird",
+            "birdwatching"
+        ],
+        "sauce": [
+            "food",
+            "cook",
+            "cooking",
+            "meal",
+            "dish",
+            "gourmet",
+            "tasty",
+            "lunch",
+            "dinner",
+            "delicious",
+            "gastronomy"
+        ],
+        "dish": [
+            "food",
+            "cook",
+            "cooking",
+            "meal",
+            "dish",
+            "gourmet",
+            "tasty",
+            "lunch",
+            "dinner",
+            "delicious",
+            "gastronomy"
+        ],
+        "cooking": [
+            "food",
+            "cook",
+            "dish",
+            "meal",
+            "gourmet",
+            "tasty",
+            "lunch",
+            "dinner",
+            "delicious"
+        ],
+        "water": [
+            "wet",
+            "liquid",
+            "aqua",
+            "texture"
+        ],
+        "life": [
+            "biology"
+        ],
+        "blurred": [
+            "blur",
+            "bokeh",
+            "defocused",
+            "focus"
+        ],
+        "moon": [
+            "satellite",
+            "space",
+            "universe",
+            "crater"
+        ],
+        "black and white": [
+            "gray"
+        ]
+    };
+
+    compoundWords = [
+        "close up",
+        "bell pepper",
+        "ground beef",
+        "vegetable food",
+        "passion fruit",
+        "black and white",
+        "looking up",
+        "ground meat",
+        "cherry tomato",
+        "Ground beef",
+        "straw potatoes",
+        "straw potato"
+    ];
+
+    toRemove = [];
+    listText = [];
+    originalText = 'bell pepper in the table of the dinner with food and rice and plant in black and white, and plant.';
+    text = originalText;
+
+    function getWordsFromTitle() {
+        text = text.replace(',', '');
+        text = text.replace('.', '');
+        previus = text;
+        after = '';
+
+        while(previus != after) {
+            previus = text;
+            removeSentences.forEach(removeFromKeyWords);
+            after = text;
+        }
+
+        listText = listText.concat(text.split(' '));
+    
+        return listText
+    }
+
+    function removeFromKeyWords(value, index) {
+        text = text.replace(value, ' ');
+    }
+
+    function verifyCompoundWords() {
+        compoundWords.forEach(addCoumpoundWords);
+    }
+
+    function addCoumpoundWords(value, index) {
+        if (originalText.includes(value)) {
+            listText.push(value);
+            console.log(listText);
+            text = text.replace(value, '');
+        }
+    }
+
+    function addAssociatedWords() {
+        for (let key in genericKeywords) {
+            if (originalText.includes(key)) {
+                listText = listText.concat(genericKeywords[key]);
+            } 
+        }
+    }
+
+    function removeRepeatedWords() {
+        listText = [...new Set(listText)];
+    }
+
+    verifyCompoundWords();
+    getWordsFromTitle();
+    addAssociatedWords();
+
+    listText.push('nobody');
+    listText = listText.filter(element => element.trim() !== "");
+
+    removeRepeatedWords()
+
+    console.log(listText.join(';'));
+
+    console.log(listText);
+  </script>
+  
+  </body>
+</html>

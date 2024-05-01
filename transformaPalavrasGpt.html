@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Separate Money</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </style>
+  </head>
+  <body>
+
+  <!-- !PAGE CONTENT! -->
+  <div>
+
+    <!-- Header -->
+    <header>
+     
+    </header>
+
+
+    <div>
+      
+    </div>
+    </br></br>
+    <div>
+      
+    </div>
+    
+  <!-- End Page Content -->
+  </div>
+
+  <!-- Footer / About Section -->
+  <footer>
+    
+  </footer>
+
+  <script>
+const removeSentences = [
+    "of",
+    "the",
+    "and",
+    "in",
+    "with",
+    "above",
+    "among",
+    "on",
+    "a",
+    "under",
+    "selective",
+    "over",
+    "against",
+    "down",
+    "known",
+    "as",
+    "amid",
+    "amidst",
+    "focus",
+    "to",
+    "at",
+    "used",
+    "for"
+];
+
+const genericKeywords = {
+    "food": [
+        "taste",
+        "meal"
+    ],
+    "mushroom": [
+        "fungus",
+        "fungi",
+        "organic"
+    ],
+    "texture": [
+        "surface",
+        "material"
+    ],
+    "plant": [
+        "flora",
+        "nature",
+        "natural",
+        "botany",
+        "biology",
+        "seasonal",
+        "organic"
+    ],
+    "plants": [
+        "flora",
+        "nature",
+        "natural",
+        "botany",
+        "biology",
+        "seasonal",
+        "organic",
+        "plant"
+    ],
+    "sky": [
+        "air",
+        "high",
+        "atmosphere",
+        "climate",
+        "heaven",
+        "meteorology",
+        "weather"
+    ],
+    "cloud": [
+        "air",
+        "climate",
+        "clouds",
+        "cloudscape",
+        "meteorology",
+        "weather",
+        "fluffy"
+    ],
+    "clouds": [
+        "air",
+        "climate",
+        "clouds",
+        "cloudscape",
+        "meteorology",
+        "weather",
+        "fluffy",
+        "cloud"
+    ],
+    "meat": [
+        "protein"
+    ],
+    "dairy": [
+        "food",
+        "nutrition",
+        "product",
+        "cuisine",
+        "milk",
+        "gastronomy"
+    ],
+    "game": [
+        "editorial",
+        "entertainment",
+        "gaming",
+        "play",
+        "hobbie"
+    ],
+    "leaf": [
+        "nature",
+        "natural",
+        "season",
+        "plant",
+        "organic"
+    ],
+    "leaves": [
+        "nature",
+        "natural",
+        "season",
+        "plant",
+        "leaf",
+        "foliage",
+        "organic"
+    ],
+    "ingredient": [
+        "food",
+        "cook",
+        "cooking",
+        "meal",
+        "dish",
+        "gourmet",
+        "tasty",
+        "lunch",
+        "dinner",
+        "delicious",
+        "gastronomy",
+        "condiment"
+    ],
+    "wildlife": [
+        "nature",
+        "natural",
+        "animal",
+        "fauna",
+        "wild",
+        "biology",
+        "habitat",
+        "environment",
+        "organic"
+    ],
+    "falling": [
+        "movement",
+        "fall"
+    ],
+    "trees": [
+        "nature",
+        "natural",
+        "plant",
+        "flora",
+        "biology",
+        "seasonal",
+        "wood",
+        "tree"
+    ],
+    "tree": [
+        "nature",
+        "natural",
+        "plant",
+        "flora",
+        "biology",
+        "seasonal",
+        "wood"
+    ],
+    "treetop": [
+        "branch",
+        "natural",
+        "nature",
+        "plant",
+        "flora",
+        "tree",
+        "season",
+        "biology",
+        "seasonal"
+    ],
+    "rice": [
+        "grain",
+        "meal",
+        "food",
+        "gastronomy",
+        "nutrition",
+        "tasty",
+        "ingredient",
+        "organic"
+    ],
+    "flower": [
+        "nature",
+        "natural",
+        "plant",
+        "season",
+        "flora",
+        "biology",
+        "botanical",
+        "floral",
+        "seasonal",
+        "petal",
+        "organic"
+    ],
+    "flowers": [
+        "nature",
+        "natural",
+        "plant",
+        "season",
+        "flora",
+        "biology",
+        "botanical",
+        "floral",
+        "seasonal",
+        "petal",
+        "flower",
+        "organic"
+    ],
+    "fruit": [
+        "agriculture",
+        "nutrition",
+        "natural",
+        "organic",
+        "food",
+        "harvest",
+        "taste"
+    ],
+    "vegetable food": [
+        "agriculture",
+        "nutrition",
+        "natural",
+        "organic",
+        "food",
+        "harvest",
+        "taste",
+        "horticultural"
+    ],
+    "bird": [
+        "animal",
+        "fauna",
+        "biology",
+        "birdwatching"
+    ],
+    "birds": [
+        "animal",
+        "fauna",
+        "biology",
+        "bird",
+        "birdwatching"
+    ],
+    "sauce": [
+        "food",
+        "cook",
+        "cooking",
+        "meal",
+        "dish",
+        "gourmet",
+        "tasty",
+        "lunch",
+        "dinner",
+        "delicious",
+        "gastronomy"
+    ],
+    "dish": [
+        "food",
+        "cook",
+        "cooking",
+        "meal",
+        "dish",
+        "gourmet",
+        "tasty",
+        "lunch",
+        "dinner",
+        "delicious",
+        "gastronomy"
+    ],
+    "cooking": [
+        "food",
+        "cook",
+        "dish",
+        "meal",
+        "gourmet",
+        "tasty",
+        "lunch",
+        "dinner",
+        "delicious"
+    ],
+    "water": [
+        "wet",
+        "liquid",
+        "aqua",
+        "texture"
+    ],
+    "life": [
+        "biology"
+    ],
+    "blurred": [
+        "blur",
+        "bokeh",
+        "defocused",
+        "focus"
+    ],
+    "moon": [
+        "satellite",
+        "space",
+        "universe",
+        "crater"
+    ],
+    "black and white": [
+        "gray"
+    ]
+};
+
+const compoundWords = [
+    "close up",
+    "bell pepper",
+    "ground beef",
+    "vegetable food",
+    "passion fruit",
+    "black and white",
+    "looking up",
+    "ground meat",
+    "cherry tomato",
+    "Ground beef",
+    "straw potatoes",
+    "straw potato"
+];
+
+function getWordsFromTitle(text) {
+    text = text.replace(',', '');
+    text = text.replace('.', '');
+    let listText = text.split(' ');
+    listText = Array.from(new Set(listText));
+    const toRemove = [];
+    listText.forEach(word => {
+        if (removeSentences.includes(word)) {
+            toRemove.push(word);
+        }
+    });
+    toRemove.forEach(remove => {
+        const index = listText.indexOf(remove);
+        if (index !== -1) {
+            listText.splice(index, 1);
+        }
+    });
+    return listText;
+}
+
+function verifyCompoundWords(text) {
+    const usedCompCompoundWords = [];
+    compoundWords.forEach(word => {
+        if (text.includes(word)) {
+            usedCompCompoundWords.push(word);
+            text = text.replace(word, '');
+        }
+    });
+    return [usedCompCompoundWords, text];
+}
+
+function associateKeywords(arrayText) {
+    for (const word in genericKeywords) {
+        if (arrayText.includes(word)) {
+            arrayText = arrayText.concat(genericKeywords[word]);
+        }
+    }
+    arrayText = Array.from(new Set(arrayText));
+    return arrayText;
+}
+
+let loop = 1;
+
+    // let text = prompt("Input the text:");
+    // to test:
+    let text = 'bell pepper in the table of the dinner with food and rice and plant in black and white';
+    const compoundWordsFinded = verifyCompoundWords(text);
+    let arrayText = compoundWordsFinded[0];
+    text = compoundWordsFinded[1];
+    text = text.trim();
+    const listText = getWordsFromTitle(text);
+    arrayText = arrayText.concat(listText);
+    arrayText = associateKeywords(arrayText);
+    arrayText.push('nobody');
+    console.log(arrayText.join(';'));
+
+console.log('operação finalizada');
+</script>
+  
+</body>
+</html>
