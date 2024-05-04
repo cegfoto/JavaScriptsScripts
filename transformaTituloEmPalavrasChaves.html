@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Separate Money</title>
+    <title>Keywords</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     </style>
@@ -20,7 +20,12 @@
     <div>
       
     </div>
-    </br></br>
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" onchange="automatic()"></br>
+    <button onclick="getKeyWords()">Pick up key words</button></br></br>
+    <input id="keywords"></input>
+    <button onclick="copyText()">Copy text</button>
+    </br></br> 
     <div>
       
     </div>
@@ -414,18 +419,42 @@
         listText = [...new Set(listText)];
     }
 
-    verifyCompoundWords();
-    getWordsFromTitle();
-    addAssociatedWords();
+    function getKeyWords() {
+        listText = [];
+        originalText = document.getElementById('title').value;
+        text = originalText;
 
-    listText.push('nobody');
-    listText = listText.filter(element => element.trim() !== "");
+        verifyCompoundWords();
+        getWordsFromTitle();
+        addAssociatedWords();
 
-    removeRepeatedWords()
+        listText.push('nobody');
+        listText = listText.filter(element => element.trim() !== "");
 
-    console.log(listText.join(';'));
+        removeRepeatedWords()
 
-    console.log(listText);
+        // console.log(listText.join(';'));
+        // console.log(listText);
+
+        document.getElementById('keywords').value = listText.join(';');
+    }
+
+    function copyText() {
+        // Get the text field
+        var copyText = document.getElementById("keywords");
+
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value); 
+    }
+
+    function automatic() {
+        getKeyWords();
+        copyText();
+    }
   </script>
   
   </body>
