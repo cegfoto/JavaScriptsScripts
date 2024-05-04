@@ -16,15 +16,12 @@
      
     </header>
 
-
     <div>
-      
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" onchange="automatic()"></br>
+        <input id="keywords"></input>
     </div>
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title" onchange="automatic()"></br>
-    <button onclick="getKeyWords()">Pick up key words</button></br></br>
-    <input id="keywords"></input>
-    <button onclick="copyText()">Copy text</button>
+
     </br></br> 
     <div>
       
@@ -64,9 +61,6 @@
         " used ",
         " for "
     ];
-
-    
-
 
     const genericKeywords = { 
         "food": [

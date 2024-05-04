@@ -20,7 +20,12 @@
     <div>
       
     </div>
-    </br></br>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" ></br>
+        <button onclick="getKeyWords()">Pick up key words</button></br></br>
+        <input id="keywords"></input>
+        <button onclick="copyText()">Copy text</button>
+        </br></br> 
     <div>
       
     </div>
@@ -402,11 +407,8 @@ function associateKeywords(arrayText) {
     return arrayText;
 }
 
-let loop = 1;
-
-    // let text = prompt("Input the text:");
-    // to test:
-    let text = 'bell pepper in the table of the dinner with food and rice and plant in black and white';
+function getKeyWords() {
+    let text = document.getElementById('title').value;
     const compoundWordsFinded = verifyCompoundWords(text);
     let arrayText = compoundWordsFinded[0];
     text = compoundWordsFinded[1];
@@ -415,9 +417,21 @@ let loop = 1;
     arrayText = arrayText.concat(listText);
     arrayText = associateKeywords(arrayText);
     arrayText.push('nobody');
-    console.log(arrayText.join(';'));
+    document.getElementById('keywords').value = arrayText.join(';');
+}
 
-console.log('operação finalizada');
+function copyText() {
+    // Get the text field
+    var copyText = document.getElementById("keywords");
+
+    // Select the text field
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value); 
+}
+
 </script>
   
 </body>
