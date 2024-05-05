@@ -367,8 +367,8 @@ const compoundWords = [
 ];
 
 function getWordsFromTitle(text) {
-    text = text.replace(',', '');
-    text = text.replace('.', '');
+    text = text.replaceAll(',', '');
+    text = text.replaceAll('.', '');
     let listText = text.split(' ');
     listText = Array.from(new Set(listText));
     const toRemove = [];

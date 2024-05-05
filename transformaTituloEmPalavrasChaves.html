@@ -365,12 +365,13 @@
 
     toRemove = [];
     listText = [];
-    originalText = 'bell pepper in the table of the dinner with food and rice and plant in black and white, and plant.';
+    originalText = 'bell pepper. in the table of the dinner with food and rice and plant in black and white, and plant.';
     text = originalText;
 
     function getWordsFromTitle() {
-        text = text.replace(',', '');
-        text = text.replace('.', '');
+        text = text.replaceAll(',', '');
+        text = text.replaceAll('.', '');
+
         previus = text;
         after = '';
 
@@ -396,7 +397,6 @@
     function addCoumpoundWords(value, index) {
         if (originalText.includes(value)) {
             listText.push(value);
-            console.log(listText);
             text = text.replace(value, '');
         }
     }
@@ -426,9 +426,6 @@
         listText = listText.filter(element => element.trim() !== "");
 
         removeRepeatedWords()
-
-        // console.log(listText.join(';'));
-        // console.log(listText);
 
         document.getElementById('keywords').value = listText.join(';');
     }
