@@ -16,19 +16,17 @@
      
     </header>
 
-
     <div>
       <label for="total">Total:</label><br>
       <input type="number" id="total" name="total" value="0"></br>
       <label for="bills">Bills:</label><br>
       <input type="number" id="bills" name="bills" value="0"></br>
       <label for="lname">Separate Money:</label><br>
-      <input type="number" id="separate" name="separate" value="5"></br>
+      <input type="number" id="separate" name="separate" value="4"></br>
       <label for="lname">To keep in month:</label><br>
       <input type="number" id="month" name="month" value="0"></br></br>
       <button onclick="calculate()">Calculate</button></br></br>
-      <b>CDI 1:</b><label id="cdi1">0</label></br>
-      <b>CDI 2:</b><label id="cdi2">0</label></br>
+      <b>CDI:</b><label id="cdi1">0</label></br>
       <b>Fun:</b><label id="fun">0</label></br>
       <b>FIIS:</b><label id="fiis">0</label></br>
       <b>Treasure:</b><label id="treasure">0</label></br></br>
@@ -61,15 +59,17 @@
       let total = parseFloat(document.getElementById('total').value) 
         - parseFloat(document.getElementById('bills').value)
         - parseFloat(document.getElementById('month').value);
+
       let divided = total / parseFloat(document.getElementById('separate').value);
-        document.getElementById('cdi1').innerHTML = divided/2;
-        document.getElementById('cdi2').innerHTML = divided/2;
-        document.getElementById('fiis').innerHTML = divided*2;
+        document.getElementById('cdi1').innerHTML = divided;
+        document.getElementById('fiis').innerHTML = divided;
         document.getElementById('treasure').innerHTML = divided;
         document.getElementById('fun').innerHTML = divided;
         document.getElementById('total_invest').innerHTML = total;
     }
+
     let numberAux = 0;
+
     function calculator(operator) {
       let numberCalculator = parseFloat(document.getElementById('number_calculator').value);
       switch(operator) {
@@ -88,6 +88,7 @@
       }
       document.getElementById('result_calculator').innerHTML = numberAux;
     }
+
     function clean() {
       numberAux = 0;
       document.getElementById('result_calculator').innerHTML = numberAux;
