@@ -388,7 +388,7 @@
     }
 
     function removeFromKeyWords(value, index) {
-        text = text.replace(value, ' ');
+        text = text.replaceAll(value, ' ');
     }
 
     function verifyCompoundWords() {
@@ -398,7 +398,7 @@
     function addCoumpoundWords(value, index) {
         if (originalText.includes(value)) {
             listText.push(value);
-            text = text.replace(value, '');
+            text = text.replaceAll(value, '');
         }
     }
 
